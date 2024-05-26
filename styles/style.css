@@ -19,8 +19,6 @@ a:link, a:visited{
 	background-color: #4C2E05;
 	color: white;
 	text-decoration: none;
-	border: 1px solid;
-	border-color: black;
 	border-radius: 10px;
 	display: inline-block; 
 }
@@ -143,6 +141,11 @@ a:hover{
 }
 
 .image {
+	width: 300px;
+	height: 300px;
+}
+
+.image-inside{
 	width: 200px;
 	height: 200px;
 }
@@ -771,67 +774,12 @@ a:hover{
 	height: 189px;
 	position: relative;
 	margin: 0 auto;
-	background: transparent url(../Images/Bag/black_bag.png) no-repeat center center;
 	/* Adjusted background properties */
 	background-size: cover;
 	border-radius: 10px; /* Added border-radius */
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Added box-shadow */
 }
 
-.ca-item-2 .ca-icon{
-	background-image:url(../images/animal2.png);
-}
-.ca-item-3 .ca-icon{
-	background-image:url(../images/animal3.png);
-}
-.ca-item-4 .ca-icon{
-	background-image:url(../images/animal4.png);
-}
-.ca-item-5 .ca-icon{
-	background-image:url(../images/animal5.png);
-}
-.ca-item-6 .ca-icon{
-	background-image:url(../images/animal6.png);
-}
-.ca-item-7 .ca-icon{
-	background-image:url(../images/animal7.png);
-}
-.ca-item-8 .ca-icon{
-	background-image:url(../images/animal8.png);
-}
-.ca-item h3{
-	font-family: 'Coustard', sans-serif;
-	text-transform:uppercase;
-	font-size:30px;
-	color:#000;
-	margin-bottom:20px;
-	height:85px;
-	text-align:center;
-	text-shadow: 0px 1px 1px #e4ebe9;
-}
-.ca-item h4{
-	font-family: "Georgia","Times New Roman",serif;
-	font-style:italic;
-	font-size:12px;
-	text-align:left;
-	border-left:10px solid #b0ccc6;
-	padding-left:10px;
-	line-height:24px;
-	margin:10px;
-	position:relative;
-}
-.ca-item h4 span{
-	text-indent:40px;
-	display:block;
-}
-.ca-item h4  span.ca-quote{
-	color:#f4eee3;
-	font-size:100px;
-	position:absolute;
-	top:20px;
-	left:0px;
-	text-indent:0px;
-}
 .ca-content-wrapper {
 	background: #6D4F27;
 	position: absolute;

@@ -2,7 +2,6 @@
 	var aux = {
 			// navigates left / right
 			navigate: function(dir, $el, $wrapper, opts, cache) {
-
 					var scroll = opts.scroll,
 							factor = 1,
 							idxClicked = 0;
@@ -41,29 +40,28 @@
 									cache.isAnimating = false;
 							});
 					});
-
 			},
 			// opens an item (animation) -> opens all the others
-			openItem: function($wrapper, $item, opts, cache) {
+			openItem: function($wrapper, $link, opts, cache) {
+					var $item = $link.closest('.ca-item');
 					cache.idxClicked = $item.index();
 					// the item's position (1, 2, or 3) on the viewport (the visible items)
 					cache.winpos = aux.getWinPos($item.position().left, cache);
 					$wrapper.find('div.ca-item').not($item).hide();
 					$item.find('div.ca-content-wrapper').css('left', cache.itemW + 'px').stop().animate({
-									width: cache.itemW * 2 + 'px',
-									left: cache.itemW + 'px'
-							}, opts.itemSpeed, opts.itemEasing)
-							.end()
-							.stop()
-							.animate({
-									left: '0px'
-							}, opts.itemSpeed, opts.itemEasing, function() {
-									cache.isAnimating = false;
-									cache.expanded = true;
+							width: cache.itemW * 2 + 'px',
+							left: cache.itemW + 'px'
+					}, opts.itemSpeed, opts.itemEasing).end().stop().animate({
+							left: '0px'
+					}, opts.itemSpeed, opts.itemEasing, function() {
+							cache.isAnimating = false;
+							cache.expanded = true;
 
-									aux.openItems($wrapper, $item, opts, cache);
-							});
+							// Hide more link
+							aux.toggleMore($link, false);
 
+							aux.openItems($wrapper, $item, opts, cache);
+					});
 			},
 			// opens all the items
 			openItems: function($wrapper, $openedItem, opts, cache) {
@@ -80,13 +78,13 @@
 									});
 
 									// hide more link
-									aux.toggleMore($item, false);
+									aux.toggleMore($item.find('a.link'), false);
 							}
 					});
 			},
 			// show / hide the item's more button
-			toggleMore: function($item, show) {
-					(show) ? $item.find('a.ca-more').show(): $item.find('a.ca-more').hide();
+			toggleMore: function($link, show) {
+					(show) ? $link.find('a.ca-more').show(): $link.find('a.ca-more').hide();
 			},
 			// close all the items
 			// the current one is animated
@@ -94,19 +92,16 @@
 					var openedIdx = $openedItem.index();
 
 					$openedItem.find('div.ca-content-wrapper').stop().animate({
-									width: '0px'
-							}, opts.itemSpeed, opts.itemEasing)
-							.end()
-							.stop()
-							.animate({
-									left: cache.itemW * (cache.winpos - 1) + 'px'
-							}, opts.itemSpeed, opts.itemEasing, function() {
-									cache.isAnimating = false;
-									cache.expanded = false;
-							});
+							width: '0px'
+					}, opts.itemSpeed, opts.itemEasing).end().stop().animate({
+							left: cache.itemW * (cache.winpos - 1) + 'px'
+					}, opts.itemSpeed, opts.itemEasing, function() {
+							cache.isAnimating = false;
+							cache.expanded = false;
+					});
 
 					// show more link
-					aux.toggleMore($openedItem, true);
+					aux.toggleMore($openedItem.find('a.link'), true);
 
 					$wrapper.find('div.ca-item').each(function(i) {
 							var $item = $(this),
@@ -121,7 +116,7 @@
 											.show();
 
 									// show more link
-									aux.toggleMore($item, true);
+									aux.toggleMore($item.find('a.link'), true);
 							}
 					});
 			},
@@ -140,12 +135,10 @@
 									break;
 					}
 			}
-	},
-	methods = {
+	};
+	var methods = {
 			init: function(options) {
-
 					if (this.length) {
-
 							var settings = {
 									sliderSpeed: 500, // speed for the sliding animation
 									sliderEasing: 'easeOutExpo', // easing for the sliding animation
@@ -155,7 +148,6 @@
 							};
 
 							return this.each(function() {
-
 									// if options exist, lets merge them with our default settings
 									if (options) {
 											$.extend(settings, options);
@@ -166,14 +158,14 @@
 											$items = $wrapper.children('div.ca-item'),
 											cache = {};
 
-									// save the with of one item	
+									// save the width of one item    
 									cache.itemW = $items.width();
 									// save the number of total items
 									cache.totalItems = $items.length;
 
-                    // add navigation buttons
-                    if (cache.totalItems > 3)
-											$el.prepend('<div class="ca-nav"><span class="ca-nav-prev">Previous</span><span class="ca-nav-next">Next</span></div>')
+									// add navigation buttons
+									if (cache.totalItems > 3)
+											$el.prepend('<div class="ca-nav"><span class="ca-nav-prev">Previous</span><span class="ca-nav-next">Next</span></div>');
 
 									// control the scroll value
 									if (settings.scroll < 1)
@@ -197,12 +189,11 @@
 									});
 
 									// click to open the item(s)
-									$el.on('click', 'a.ca-more', function(event) {
+									$el.on('click', 'a.link', function(event) {
 											if (cache.isAnimating) return false;
 											cache.isAnimating = true;
-											$(this).hide();
-											var $item = $(this).closest('div.ca-item');
-											aux.openItem($wrapper, $item, settings, cache);
+											var $link = $(this);
+											aux.openItem($wrapper, $link, settings, cache);
 											return false;
 									});
 
@@ -243,7 +234,6 @@
 											}
 											return false;
 									});
-
 							});
 					}
 			}
@@ -260,4 +250,3 @@
 	};
 
 })(jQuery);
-
