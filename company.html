@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Company</title>
+  <script src="js/jquery-3.7.1.min.js" type="text/javascript"></script>
+  <script src="js/jqFancyTransitions.1.8.min.js" type="text/javascript"></script>
+  <script src="js/index.js" type="text/javascript"></script>
+  <script src="js/company.js" type="text/javascript"></script>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="shortcut icon" href="Images/Icons/favicon.png" type="image/x-icon">
 </head>
@@ -21,26 +25,16 @@
     </div>
   </div>
   <hr>
-  <div class="second-container">
+  <div class="index-container">
     <div class="company-text">
       <div class="title">
         <h2>About Company</h2>
       </div>
-      <p>
-        Since 1969, Mr. Abu-abu embarked on his entrepreneurial journey, initially operating a modest enterprise specializing in the finest cow leather within the vicinity of Misamis Occidental.
-        Over the course of 69 years, his business flourished, evolving into a global entity with six satellite branches across every continent worldwide.
-      </p>
-    </div>
-    <div class="company-photo">
-      <img class="company-image" src="Images/Company/leather2.png" alt="Status Icon">
-    </div>
-  </div>
-  <div class="third-container">
-    <div class="company-photo">
-      <img class="company-image" src="Images/Company/leather3.png" alt="Status Icon">
-    </div>
-    <div class="button-container">
-      <div class="company-text">
+      <div id="paragraphs">
+        <p>
+          Since 1969, Mr. Abu-abu embarked on his entrepreneurial journey, initially operating a modest enterprise specializing in the finest cow leather within the vicinity of Misamis Occidental.
+          Over the course of 69 years, his business flourished, evolving into a global entity with six satellite branches across every continent worldwide.
+        </p>
         <p>
           Started from cow leather, Mr. Abu-abu ran his business with passion and dedication. 
           As demand grew, he expanded his offerings to include new leather variants like crocodile leather, 
@@ -51,9 +45,16 @@
         </p>
       </div>
       <div class="company-button">
-        <form action="products.html">
+        <form action="products.php">
           <button>Go Back</button>
         </form>
+      </div>
+    </div>
+    <div class="company-photo">
+      <div id="slideshow">
+        <img class="company-image" src="Images/Company/leather1.png" alt="<p>Finest quality leather<p>"/>
+        <img class="company-image" src="Images/Company/leather2.png" alt="<p>Crafted leather goods<p>" />
+        <img class="company-image" src="Images/Company/leather3.png" alt="<p>Premium leather products<p>" />
       </div>
     </div>
   </div>
