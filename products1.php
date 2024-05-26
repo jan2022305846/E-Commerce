@@ -6,7 +6,7 @@
     <title>Products</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="shortcut icon" href="Images/Icons/favicon.png" type="image/x-icon">
-		<script src="js/jquery-1.6.2.js" type="text/javascript"></script>
+    <script src="js/jquery-3.7.1.min.js" type="text/javascript"></script>
     <script src="js/jquery.easing.1.3.js" type="text/javascript"></script>
     <script src="js/jquery.mousewheel.js" type="text/javascript"></script>
     <script src="js/jquery.contentcarousel.js" type="text/javascript"></script>
@@ -115,7 +115,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         // Initialize content carousel
-        $('#ca-container').contentcarousel();
+        $('#ca-container').contentcarousel({
+            easing: 'easeInOutExpo' // Example of using one of the easing functions
+        });
 
         // Event handler for "more" link
         $('.ca-more').click(function(e) {
@@ -124,6 +126,12 @@
             var $contentWrapper = $(this).closest('.ca-item').find('.ca-content-wrapper');
             // Toggle visibility of content wrapper
             $contentWrapper.toggle();
+        });
+
+        // Event handler for "close" link
+        $('.ca-close').click(function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            $(this).closest('.ca-content-wrapper').hide();
         });
     });
 </script>
