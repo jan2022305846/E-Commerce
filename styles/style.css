@@ -781,53 +781,57 @@ a:hover{
 }
 
 .ca-content-wrapper {
-	background: #6D4F27;
-	position: absolute;
-	width: 660px; /* Update this width as needed */
-	height: 440px;
-	top: 5px;
-	right: 0px; /* Ensure it aligns to the right */
-	text-align: left;
-	z-index: 10000;
-	overflow: hidden;
-	transition: width 0.3s ease; /* Add transition for smoother expansion */
-}
-.ca-content {
-	width: 660px;
-	overflow: hidden;
+	display: none; /* Hide by default */
+	position: absolute; /* Position elements absolutely */
+	top: 0; /* Position from the top */
+	left: 0; /* Position from the left */
+	width: 100%; /* Occupy full width */
+	height: 100%; /* Occupy full height */
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+	z-index: 999; /* Ensure it's on top of other content */
 }
 
-.ca-content h6{
-	margin:25px 20px 0px 35px;
-	font-size:32px;
-	padding-bottom:5px;
-	color:#000;
-	font-family: 'Coustard', sans-serif;
-	color:#60817a;
-	border-bottom:2px solid #99bcb4;
-	text-shadow: 1px 1px 1px #99BCB4;
+.ca-content-wrapper.show {
+	display: block; /* Display when the show class is applied */
 }
-.ca-content ul{
-	margin:20px 35px;
-	height:30px;
-}
-.ca-content ul li{
-	float:left;
-	margin:0px 2px;
-}
-.ca-content ul li a{
-	color:#fff;
-	background:#000;
-	padding:3px 6px;
-	font-size:14px;
-	font-family: "Georgia","Times New Roman",serif;
-	font-style:italic;
-}
-.ca-content ul li a:hover{
-	background:#fff;
-	color:#000;
-	text-shadow:none;
-}
+
+	.ca-content {
+		width: 660px;
+		overflow: hidden;
+		padding: 20px; 
+	}
+
+	.ca-content h6{
+		margin:25px 20px 0px 35px;
+		font-size:32px;
+		padding-bottom:5px;
+		color:#000;
+		font-family: 'Coustard', sans-serif;
+		color:#60817a;
+		border-bottom:2px solid #99bcb4;
+		text-shadow: 1px 1px 1px #99BCB4;
+	}
+	.ca-content ul{
+		margin:20px 35px;
+		height:30px;
+	}
+	.ca-content ul li{
+		float:left;
+		margin:0px 2px;
+	}
+	.ca-content ul li a{
+		color:#fff;
+		background:#000;
+		padding:3px 6px;
+		font-size:14px;
+		font-family: "Georgia","Times New Roman",serif;
+		font-style:italic;
+	}
+	.ca-content ul li a:hover{
+		background:#fff;
+		color:#000;
+		text-shadow:none;
+	}
 .ca-nav span{
 	width:25px;
 	height:38px;

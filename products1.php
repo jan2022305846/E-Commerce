@@ -10,11 +10,6 @@
     <script src="js/jquery.easing.1.3.js" type="text/javascript"></script>
     <script src="js/jquery.mousewheel.js" type="text/javascript"></script>
     <script src="js/jquery.contentcarousel.js" type="text/javascript"></script>
-    <style>
-        .ca-content-wrapper {
-            display: none; /* Hide by default */
-        }
-    </style>
 </head>
 <body>
 <div class="header">
@@ -71,9 +66,9 @@
 
                     // Display the main product in the carousel
                     echo '<div class="ca-item">';
-                    echo '<div class="ca-item-main box">';
+                    echo '<div class="ca-item-main box ">';
                     echo '<a class="link" href="#">';
-                    echo '<img class="image" src="' . $mainProductImage . '" alt="' . $mainProductName . '">';
+                    echo '<img class="image " src="' . $mainProductImage . '" alt="' . $mainProductName . '">';
                     echo $mainProductName;
                     echo '</a>';
                     echo '</div>';
@@ -115,36 +110,8 @@
         <hr>
         <p>&copy; 2004 Janny Abu-abu. All Rights Reserved</p>
     </footer>
-
 <script type="text/javascript">
-    $(document).ready(function() {
-    // Initialize content carousel
-    $('#ca-container').contentcarousel({
-        scroll: 1, // Scroll one item at a time
-        circular: true, // Circular carousel
-        autoplay: true, // Autoplay enabled
-        autoplayInterval: 5000, // Autoplay interval in milliseconds
-        easing: 'easeInOutExpo' // Easing function
-    });
-
-    // Event handler for "link" click
-    $(document).on('click', '.link', function(e) {
-        e.preventDefault(); // Prevent default link behavior
-
-        // Hide all content wrappers first
-        $('.ca-content-wrapper').hide();
-
-        // Find the closest content wrapper to the clicked "link" and show it
-        var $contentWrapper = $(this).closest('.ca-item').find('.ca-content-wrapper');
-        $contentWrapper.show();
-    });
-
-    // Event handler for "close" link
-    $(document).on('click', '.ca-close', function(e) {
-        e.preventDefault(); // Prevent default link behavior
-        $(this).closest('.ca-content-wrapper').hide();
-    });
-});
+	$('#ca-container').contentcarousel();
 </script>
 </body>
 </html>
