@@ -31,15 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
   </head>
   <body>
-    <div class="header">
-      <div class="logo">
-        <img src="Images/Icons/logo_transparent.png" alt="logo">
-      </div>
-      <div class="company">
-        <h1>Abu-abu Leather Works Corp.</h1>
-      </div>
-      <div class="search"></div>
-      <div class="navigation"></div>
+  <div class="header">
+        <div class="logo">
+            <img src="Images/Icons/logo_transparent.png" alt="logo">
+        </div>
+        <div class="company">
+            <h1>Abu-abu Leather Works Corp. </h1>
+        </div>
+        <div class="search"></div>
+        <div class="navigation">
+            <nav>
+                <ul>
+                    <li><a href="products.php">Products</a></li>
+                    <li><a href="company.html">Company</a></li>
+                    <li><a href="login.php">Log-in</a></li>
+                    <li><a href="about_us.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <hr />
     <div class="container">

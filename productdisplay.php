@@ -100,7 +100,7 @@ if(isset($_GET['product_id'])) {
                             Quantity: <input type="number" name="quantity" min="1" max="<?php echo $product_quantity; ?>" value="1">
                             <button type="submit">Buy Now</button> <!-- Moved inside the form -->
                           </form>
-                          <form action="wallet_var.html">
+                          <form action="products.php">
                             <button>Cancel</button>
                           </form>
                         </div>
