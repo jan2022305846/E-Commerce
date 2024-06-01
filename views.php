@@ -32,6 +32,7 @@
             <h2>View Products</h2>
         </div>
         <table class="form-table">
+            <!--
             <div class="search">
                 <input type="text" class="search-bar" placeholder="Search for product">
                 <button class="search-icon">
@@ -40,10 +41,13 @@
                     </svg>                  
                 </button>
             </div>
+            -->
                 <tr>
                     <td>Product Code:</td>
                     <td>Product Name:</td>
+                    <!--
                     <td>Description:</td>
+                    -->
                     <td>Stocks::</td>
                     <td>Price:</td> 
                     <td colspan="2" align="center">Action:</td>

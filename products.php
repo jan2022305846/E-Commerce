@@ -70,8 +70,8 @@
                     echo '<div class="ca-item">';
                     echo '<div class="ca-item-main box ">';
                     echo '<a class="link" href="#">';
-                    echo '<img class="image " src="' . $mainProductImage . '" alt="' . $category_name . '">';
-                    echo $category_name;
+                    echo '<img class="image " src="' . htmlspecialchars($mainProductImage) . '" alt="' . htmlspecialchars($category_name) . '">';
+                    echo htmlspecialchars($category_name);
                     echo '</a>';
                     echo '</div>';
 
@@ -88,10 +88,10 @@
                             
                             echo '<div class="box-content">';
                             echo '<form action="productdisplay.php" method="get">';
-                            echo '<input type="hidden" name="product_id" value="' . $productId . '">';
+                            echo '<input type="hidden" name="product_id" value="' . htmlspecialchars($productId) . '">';
                             echo '<button type="submit" class="link-button" >';
-                            echo '<img class="image-inside" src="' . $productImage . '" alt="' . $productName . '">';
-                            echo $productName;
+                            echo '<img class="image-inside" src="' . htmlspecialchars($productImage) . '" alt="' . htmlspecialchars($productName) . '">';
+                            echo htmlspecialchars($productName);
                             echo '</button>';
                             echo '</form>';
                             echo '</div>';
@@ -106,7 +106,9 @@
         } else {
             echo "0 results";
         }
-        ?>
+
+        $connection->close();
+    ?>
     </div>
 </div>
 <footer class="footer">

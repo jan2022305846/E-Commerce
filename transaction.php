@@ -33,13 +33,13 @@
         </div>
         <table class="form-table">
             <tr>
-                <td>Transaction Number:</td>
-                <td>Date:</td>
-                <td>Cust. ID:</td>
-                <td>Customer Name:</td>
-                <td>Ordered:</td>
-                <td>Total Amount:</td>
-                <td align="center">Action:</td>
+                <td class="form-td">Transaction Number:</td>
+                <td class="form-td">Date:</td>
+                <td class="form-td">Cust. ID:</td>
+                <td class="form-td">Customer Name:</td>
+                <td class="form-td">Ordered:</td>
+                <td class="form-td" >Total Amount:</td>
+                <td class="form-td" colspan="2" align="center">Action:</td>
             </tr>
                 <?php include 'fetch_transaction.php'; ?>
         </table>

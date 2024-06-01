@@ -304,12 +304,32 @@ a:hover{
 	padding: 20px;
 }
 
-.form-table, .form-total{
+.form-table, .form-total {
 	text-align: center;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	width: 100%; /* Ensure the table takes up the full width */
+	table-layout: fixed; /* Ensure equal column width */
+	border-collapse: collapse; /* Remove space between cells */
 }
 
-.form-table input, .select{
+.form-td {
+	border: 1px solid #000; /* Optional: add border to cells */
+	padding: 8px; /* Add padding inside cells for better readability */
+	text-align: left; /* Align text to the left */
+	overflow: hidden; /* Ensure content doesn't overflow */
+	text-overflow: ellipsis; /* Optional: add ellipsis to overflowed text */
+}
+
+#form-total {
+	text-align: right; /* Align the 'Total' text to the right */
+	font-weight: bold; /* Make the 'Total' text bold */
+}
+
+.form-total {
+	font-weight: bold; /* Make the total amount bold */
+}
+
+.form-table input, .select {
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	font-size: 15px;
 	padding-left: 12px;
@@ -319,6 +339,7 @@ a:hover{
 	height: 30px;
 	font-weight: bold;
 }
+
 .title{
 	background-color: #4C2E05;
 	border-radius: 8px;
@@ -333,7 +354,6 @@ a:hover{
 }
 
 .buttons {
-	margin-top: 20px;
 	display: flex;
 	justify-content: center;
 }
