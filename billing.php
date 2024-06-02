@@ -6,7 +6,6 @@
     <title>Billing Information</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="shortcut icon" href="Images/Icons/favicon.png" type="image/x-icon">
-
 </head>
 <body>
     <div class="header">
@@ -34,9 +33,7 @@
             // Retrieve values from the URL
             $transaction_number = $_GET['transaction_number'];
             $total_purchase = $_GET['total_purchase'];
-            $product_name = $_GET['product_name'];
-            $product_price = $_GET['product_price'];
-            $quantity = $_GET['quantity'];
+            $products = json_decode(urldecode($_GET['products']), true);
         ?>
         <div class="title">
             <h2>Billing Information</h2>
@@ -47,7 +44,7 @@
             <th>Country</th>
         </tr>
         <tr>
-            <td >Country:</td>
+            <td>Country:</td>
             <td>
                 <select name="country" class="select">
                     <option value="Afghanistan">Afghanistan</option>
@@ -175,23 +172,23 @@
             <th colspan="1"><br>Card Information</th>
         </tr>
         <tr>
-            <td >Transaction Number:</td>
-            <td><input type="text" name="transcation-number" value="<?php echo $_GET['transaction_number']; ?>" readonly></td>
+            <td>Transaction Number:</td>
+            <td><input type="text" name="transaction_number" value="<?php echo $transaction_number; ?>" readonly></td>
         </tr>
         <tr>
-            <td >Total Purchase:</td>
-            <td><input type="text" name="total-purchase" value="<?php echo $_GET['total_purchase']; ?>" readonly></td>
+            <td>Total Purchase:</td>
+            <td><input type="text" name="total_purchase" value="<?php echo $total_purchase; ?>" readonly></td>
         </tr>
         <tr>
-            <td >First Name:</td>
+            <td>First Name:</td>
             <td><input type="text" name="first-name"></td>
         </tr>
         <tr>
-            <td >Middle Name:</td>
+            <td>Middle Name:</td>
             <td><input type="text" name="middle-name"></td>
         </tr>
         <tr>
-            <td >Last Name:</td>
+            <td>Last Name:</td>
             <td><input type="text" name="last-name"></td>
         </tr>
         <tr>
@@ -206,14 +203,15 @@
             </td>
         </tr>
         <tr>
-            <td >Address:</td>
+            <td>Address:</td>
             <td><input type="text" name="address"></td>
         </tr>
         <tr>
-            <td >
+            <td>
             <strong>Card Type:</strong>
             </td>
-                <td><select class="select" name="card_type" size="1">
+            <td>
+                <select class="select" name="card_type" size="1">
                 <option value="Visa">Visa</option>
                 <option value="Mastercard">Mastercard</option>
                 <option value="American Express">&nbsp;&nbsp;American Express</option>
@@ -225,34 +223,40 @@
                 <option value="RCBC">RCBC</option>
                 <option value="UnionBank">UnionBank</option>
                 <option value="Other">Other</option>
-                    </select>
-                </td>
+                </select>
+            </td>
+        <tr>
         <tr>
             <th colspan="1"><br>Contact Information</th>
         </tr>
         <tr>
-            <td >Username:</td>
+            <td>Username:</td>
             <td><input type="name" name="username"></td>
         </tr>
         <tr>
-            <td >Email Address:</td>
+            <td>Email Address:</td>
             <td><input type="email" name="email"></td>
         </tr>
         <tr>
-            <td >Password:</td>
+            <td>Password:</td>
             <td><input type="password" name="password"></td>
         </tr>
         <tr>
-            <td >Contact Number:</td>
+            <td>Contact Number:</td>
             <td><input type="tel" name="contact-number"></td>
         </tr>
     </table>
         <div class="buttons">
             <input type="hidden" name="transaction_number" value="<?php echo $transaction_number; ?>">
-            <input type="hidden" name="product_name" value="<?php echo $product_name; ?>">
-            <input type="hidden" name="product_price" value="<?php echo $product_price; ?>">
-            <input type="hidden" name="quantity" value="<?php echo $quantity; ?>">
-            <input type="hidden" name="total_purchase" value="<?php echo $_GET['total_purchase']; ?>">
+            <input type="hidden" name="total_purchase" value="<?php echo $total_purchase; ?>">
+            <input type="hidden" name="products" value="<?php echo htmlspecialchars(json_encode($products)); ?>">
+            <?php
+                foreach ($products as $product) {
+                    echo '<input type="hidden" name="product_name[]" value="'.htmlspecialchars($product['product_name']).'">';
+                    echo '<input type="hidden" name="quantity[]" value="'.htmlspecialchars($product['quantity']).'">';
+                    echo '<input type="hidden" name="product_price[]" value="'.htmlspecialchars($product['product_price']).'">';
+                }
+            ?>
             <input type="submit" value="Submit" onclick="submitForm()">       
             <a href="orderform.php"><input type="button" value="Go Back"></a>
         </div>

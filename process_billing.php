@@ -15,63 +15,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customerCountry = mysqli_real_escape_string($connection, $_POST['country']);
     $customerEmailAddress = mysqli_real_escape_string($connection, $_POST['email']);
     $customerContactNumber = mysqli_real_escape_string($connection, $_POST['contact-number']);
-    $product_name = mysqli_real_escape_string($connection, $_POST['product_name']);
-    $productQuantity = mysqli_real_escape_string($connection, $_POST['quantity']);
-    $productPrice = mysqli_real_escape_string($connection, $_POST['product_price']);
     
-    // Calculate the total amount based on product price and quantity
-    $productTotalAmount = $productPrice * $productQuantity;
-
     // Insert data into customers table
     $customerInsertQuery = "INSERT INTO customers (first_name, middle_name, last_name, suffix, email, contact_number, address, country)
     VALUES ('$first_name', '$middle_name', '$last_name', '$suffix', '$customerEmailAddress', '$customerContactNumber', '$customerAddress', '$customerCountry')";
-
+    
     if ($connection->query($customerInsertQuery) === TRUE) {
-        // Get the customer ID of the newly inserted customer
         $customerID = $connection->insert_id;
 
-        // Retrieve productID based on product name
-        $productQuery = "SELECT productID, product_quantity FROM products WHERE product_name = '$product_name'";
-        $productResult = mysqli_query($connection, $productQuery);
-        if ($productResult && mysqli_num_rows($productResult) > 0) {
-            $productRow = mysqli_fetch_assoc($productResult);
-            $productID = $productRow['productID'];
-            $currentQuantity = $productRow['product_quantity'];
+        $product_names = $_POST['product_name'];
+        $quantities = $_POST['quantity'];
+        $prices = $_POST['product_price'];
 
-            // Insert data into orders table
-            $orderInsertQuery = "INSERT INTO orders (order_date, customerID, productID, quantity, total_amount)
-            VALUES ('$transactionDate', '$customerID', '$productID', '$productQuantity', '$productTotalAmount')";
+        foreach ($product_names as $index => $product_name) {
+            $product_name = mysqli_real_escape_string($connection, $product_name);
+            $quantity = (int) mysqli_real_escape_string($connection, $quantities[$index]);
+            $product_price = (float) mysqli_real_escape_string($connection, $prices[$index]);
+            $productTotalAmount = $product_price * $quantity;
 
-            if ($connection->query($orderInsertQuery) === TRUE) {
-                // Get the order ID of the newly inserted order
-                $orderID = $connection->insert_id;
+            // Retrieve productID based on product name
+            $productQuery = "SELECT productID, product_quantity FROM products WHERE product_name = '$product_name'";
+            $productResult = mysqli_query($connection, $productQuery);
 
-                // Insert data into transactions table
-                $transactionInsertQuery = "INSERT INTO transactions (transaction_number, orderID, customerID)
-                VALUES ('$transaction_number', '$orderID', '$customerID')";
+            if ($productResult && mysqli_num_rows($productResult) > 0) {
+                $productRow = mysqli_fetch_assoc($productResult);
+                $productID = $productRow['productID'];
+                $currentQuantity = $productRow['product_quantity'];
 
-                if ($connection->query($transactionInsertQuery) === TRUE) {
-                    // Calculate the new quantity after the transaction
-                    $newQuantity = $currentQuantity - $productQuantity;
+                // Insert data into orders table
+                $orderInsertQuery = "INSERT INTO orders (customerId, productId, quantity, total_amount, order_date)
+                VALUES ($customerID, $productID, $quantity, $productTotalAmount, '$transactionDate')";
 
-                    // Update the product's quantity in your database
-                    $updateQuery = "UPDATE products SET product_quantity = $newQuantity WHERE productID = $productID";
-                    $updateResult = mysqli_query($connection, $updateQuery);
+                if ($connection->query($orderInsertQuery) === TRUE) {
+                    // Get the order ID of the newly inserted order
+                    $orderID = $connection->insert_id;
 
-                    if ($updateResult) {
-                        header("Location: success.html"); // Redirect to success page
-                        exit;
+                    // Insert data into transactions table
+                    $transactionInsertQuery = "INSERT INTO transactions (transaction_number, orderId, customerId)
+                    VALUES ('$transaction_number', $orderID, $customerID)";
+
+                    if ($connection->query($transactionInsertQuery) === TRUE) {
+                        // Calculate the new quantity after the transaction
+                        $newQuantity = $currentQuantity - $quantity;
+
+                        // Update the product's quantity in your database
+                        $updateQuery = "UPDATE products SET product_quantity = $newQuantity WHERE productID = $productID";
+                        $updateResult = mysqli_query($connection, $updateQuery);
+
+                        if ($updateResult) {
+                            // Check if all products have been processed before redirecting
+                            if ($index === array_key_last($product_names)) {
+                                header("Location: success.php"); // Redirect to success page
+                                exit;
+                            }
+                        } else {
+                            echo "Error updating product quantity: " . mysqli_error($connection);
+                        }
                     } else {
-                        echo "Error updating product quantity: " . mysqli_error($connection);
+                        echo "Error inserting data into transactions table: " . $connection->error;
                     }
                 } else {
-                    echo "Error inserting data into transactions table: " . $connection->error;
+                    echo "Error inserting data into orders table: " . $connection->error;
                 }
             } else {
-                echo "Error inserting data into orders table: " . $connection->error;
+                echo "Error: Product ID not found for product name: $product_name";
             }
-        } else {
-            echo "Error: Product ID not found for product name: $product_name";
         }
     } else {
         echo "Error inserting data into customers table: " . $connection->error;
@@ -81,3 +89,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection->close();
 }
 ?>
+

@@ -1,3 +1,12 @@
+<?php
+session_start(); // Start the session if not already started
+
+// Reset the session variable
+unset($_SESSION['products']); // This will remove the 'products' session variable
+
+// Alternatively, you can destroy the entire session if you don't need any other session data
+// session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +29,7 @@
         <div class="navigation">
             <nav>
                 <ul>
-                  <li><a href="products.html">Products</a></li>
+                  <li><a href="products.php">Products</a></li>
                   <li><a href="company.html">Company</a></li>
                   <li><a href="login.php">Log-in</a></li>
                   <li><a href="about_us.html">Contact us</a></li>

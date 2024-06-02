@@ -307,7 +307,6 @@ a:hover{
 .form-table, .form-total {
 	text-align: center;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	width: 100%; /* Ensure the table takes up the full width */
 	table-layout: fixed; /* Ensure equal column width */
 	border-collapse: collapse; /* Remove space between cells */
 }
