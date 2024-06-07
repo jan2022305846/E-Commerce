@@ -89,11 +89,10 @@
             </tr>
         </table>
         <?php
-        // After calculating the $total_amount and setting the products array in the session
         $encoded_products = urlencode(json_encode($products));
         ?>
         <div class="buttons">
-            <a href="billing.php?transaction_number=<?php echo uniqid(); ?>&total_purchase=<?php echo number_format($total_amount, 2); ?>&products=<?php echo $encoded_products; ?>"><input type="button" value="Proceed"></a>
+            <a href="billing.php?transaction_number=<?php echo uniqid(); ?>&total_purchase=<?php echo number_format($total_amount, 2); ?>&products=<?php echo $encoded_products; ?>" class="proceed-link"><input type="button" value="Proceed"></a>
             <a href="products.php"><input type="button" value="Select Product"></a>
         </div>
     </div>
@@ -101,11 +100,13 @@
     <footer class="footer">
         <p>&copy; 2004 Janny Abu-abu. All Rights Reserved</p>
     </footer>
+    <script src="js/low_stock_alert.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const quantityInputs = document.querySelectorAll('.quantity-input');
             const removeButtons = document.querySelectorAll('.remove-button');
             const totalAmountElement = document.querySelector('.form-total');
+            const proceedLink = document.querySelector('.proceed-link');
 
             function updateTotalAmount() {
                 let totalAmount = 0;
@@ -126,7 +127,7 @@
                     row.querySelector('.form-td:nth-child(5)').innerText = '₱' + amount.toFixed(2);
 
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '', true);
+                    xhr.open('POST', 'update_session.php', true);
                     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                     xhr.send(JSON.stringify({ action: 'update', index: index, quantity: quantity, total: amount }));
 
@@ -145,7 +146,7 @@
                     row.remove();
 
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '', true);
+                    xhr.open('POST', 'update_session.php', true);
                     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                     xhr.send(JSON.stringify({ action: 'remove', index: index }));
 
@@ -156,22 +157,21 @@
                     };
                 });
             });
-        });
 
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST['productID'])) {
-            $input = json_decode(file_get_contents('php://input'), true);
-            if ($input['action'] == 'update') {
-                $index = $input['index'];
-                $_SESSION['products'][$index]['quantity'] = $input['quantity'];
-                $_SESSION['products'][$index]['total'] = $input['total'];
-            } elseif ($input['action'] == 'remove') {
-                $index = $input['index'];
-                unset($_SESSION['products'][$index]);
-                $_SESSION['products'] = array_values($_SESSION['products']);
-            }
-        }
-        ?>
+            proceedLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'check_cart.php', true);
+                xhr.onload = function() {
+                    if (xhr.status == 200 && xhr.responseText.trim() === 'empty') {
+                        alert('Your cart is empty. Please add some products before proceeding.');
+                    } else {
+                        window.location.href = proceedLink.getAttribute('href');
+                    }
+                };
+                xhr.send();
+            });
+        });
     </script>
 </body>
 </html>

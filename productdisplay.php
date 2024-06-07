@@ -114,5 +114,6 @@ if(isset($_GET['product_id'])) {
     <footer class="footer">
         <p>&copy; 2004 Janny Abu-abu. All Rights Reserved</p>
     </footer>
+    <script src="js/low_stock_alert.js"></script>
 </body>
 </html>

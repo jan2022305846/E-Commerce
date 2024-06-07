@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Product</title>
+    <title>Customers</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="shortcut icon" href="Images/Icons/favicon.png" type="image/x-icon">
 </head>
@@ -29,27 +29,16 @@
     <hr>
     <div class="form-container">
         <div class="title">
-            <h2>View Products</h2>
+            <h2>Customers Page</h2>
         </div>
         <table class="form-table">
-            <!--
-            <div class="search">
-                <input type="text" class="search-bar" placeholder="Search for product">
-                <button class="search-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>                  
-                </button>
-            </div>
-            -->
-                <tr>
-                    <td class="form-td">Product Code:</td>
-                    <td class="form-td">Product Name:</td>
-                    <td class="form-td">Stocks:</td>
-                    <td class="form-td">Price:</td> 
-                    <td class="form-td" colspan="2" align="center">Action:</td>
-                </tr>
-                <?php include 'fetch_products.php'; ?>
+            <tr>
+                <td class="form-td" >Customer Id:</td>
+                <td class="form-td">Customer Name:</td>
+                <td class="form-td">Contact Number:</td>
+                <td class="form-td" align="center">Action:</td>
+            </tr>
+            <?php include 'fetch_customers.php'; ?>
         </table>
         <div class="buttons">
             <a href="adminpanel.html"><input type="button" value="Go Back"></a>

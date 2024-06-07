@@ -83,10 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>&copy; 2004 Janny Abu-abu. All Rights Reserved</p>
       </footer>
       <div class="footer-button">
-        <a href="index.html">
+        <a href="index.php">
           Home
         </a>
       </div>
     </div>
+    <script src="js/low_stock_alert.js"></script>
   </body>
 </html>

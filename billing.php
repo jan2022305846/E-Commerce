@@ -181,21 +181,21 @@
         </tr>
         <tr>
             <td>First Name:</td>
-            <td><input type="text" name="first-name"></td>
+            <td><input type="text" name="first-name" required></td>
         </tr>
         <tr>
             <td>Middle Name:</td>
-            <td><input type="text" name="middle-name"></td>
+            <td><input type="text" name="middle-name" required></td>
         </tr>
         <tr>
             <td>Last Name:</td>
-            <td><input type="text" name="last-name"></td>
+            <td><input type="text" name="last-name" required></td>
         </tr>
         <tr>
             <td>Suffix:</td>
             <td>
-            <select name="suffix" class="select">
-                <option value="n/a">N/A</option>
+            <select name="suffix" class="select" required>
+                <option value=" ">N/A</option>
                 <option value="junior">Jr.</option>
                 <option value="senior">Sr.</option>
                 <option value="iii">III</option>
@@ -204,14 +204,14 @@
         </tr>
         <tr>
             <td>Address:</td>
-            <td><input type="text" name="address"></td>
+            <td><input type="text" name="address" required></td>
         </tr>
         <tr>
             <td>
             <strong>Card Type:</strong>
             </td>
             <td>
-                <select class="select" name="card_type" size="1">
+                <select class="select" name="card_type" size="1" required>
                 <option value="Visa">Visa</option>
                 <option value="Mastercard">Mastercard</option>
                 <option value="American Express">&nbsp;&nbsp;American Express</option>
@@ -231,19 +231,19 @@
         </tr>
         <tr>
             <td>Username:</td>
-            <td><input type="name" name="username"></td>
+            <td><input type="name" name="username" required></td>
         </tr>
         <tr>
             <td>Email Address:</td>
-            <td><input type="email" name="email"></td>
+            <td><input type="email" name="email" required></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="password"></td>
+            <td><input type="password" name="password" required></td>
         </tr>
         <tr>
             <td>Contact Number:</td>
-            <td><input type="tel" name="contact-number"></td>
+            <td><input type="tel" name="contact-number" required></td>
         </tr>
     </table>
         <div class="buttons">
@@ -257,7 +257,7 @@
                     echo '<input type="hidden" name="product_price[]" value="'.htmlspecialchars($product['product_price']).'">';
                 }
             ?>
-            <input type="submit" value="Submit" onclick="submitForm()">       
+            <input type="submit" value="Submit" class="styled-button" onclick="submitForm()">       
             <a href="orderform.php"><input type="button" value="Go Back"></a>
         </div>
     </div>
@@ -273,5 +273,6 @@
             window.location.href = "products.php";
         }
     </script>
+    <script src="js/low_stock_alert.js"></script>
 </body>
 </html>
