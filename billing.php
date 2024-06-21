@@ -47,6 +47,7 @@
             <td>Country:</td>
             <td>
                 <select name="country" class="select">
+                    <option value="Philippines">Philippines</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
                     <option value="Algeria">Algeria</option>
@@ -130,7 +131,6 @@
                     <option value="Papua New Guinea">Papua New Guinea</option>
                     <option value="Paraguay">Paraguay</option>
                     <option value="Peru">Peru</option>
-                    <option value="Philippines">Philippines</option>
                     <option value="Poland">Poland</option>
                     <option value="Portugal">Portugal</option>
                     <option value="Qatar">Qatar</option>
@@ -173,11 +173,11 @@
         </tr>
         <tr>
             <td>Transaction Number:</td>
-            <td><input type="text" name="transaction_number" value="<?php echo $transaction_number; ?>" readonly></td>
+            <td><input type="text" name="transaction_number" value="<?php echo $transaction_number; ?>" readonly dir="rtl"></td>
         </tr>
         <tr>
             <td>Total Purchase:</td>
-            <td><input type="text" name="total_purchase" value="<?php echo $total_purchase; ?>" readonly></td>
+            <td><input type="text" name="total_purchase" value="<?php echo $total_purchase; ?>" readonly dir="rtl"> </td>
         </tr>
         <tr>
             <td>First Name:</td>

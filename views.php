@@ -30,6 +30,9 @@
     <div class="form-container">
         <div class="title">
             <h2>View Products</h2>
+        <div class="buttons">
+            <a href="adminpanel.html"><input type="button" value="Go Back"></a>
+        </div>
         </div>
         <table class="form-table">
             <!--
@@ -47,13 +50,10 @@
                     <td class="form-td">Product Name:</td>
                     <td class="form-td">Stocks:</td>
                     <td class="form-td">Price:</td> 
-                    <td class="form-td" colspan="2" align="center">Action:</td>
+                    <td class="form-td" colspan="3" align="center">Action:</td>
                 </tr>
                 <?php include 'fetch_products.php'; ?>
         </table>
-        <div class="buttons">
-            <a href="adminpanel.html"><input type="button" value="Go Back"></a>
-        </div>
     </div>
     <hr>
     <footer class="footer">

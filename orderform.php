@@ -36,7 +36,11 @@
             <tr>
                 <td class="form-td">Transaction No.:</td>
                 <td class="form-td">
-                    <?php echo uniqid(); ?>
+                <?php 
+                    $randomNumber = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+                    $transactionNumber = 'T-' . $randomNumber;
+                    echo $transactionNumber;
+                ?>
                 </td>
                 <td class="form-td">Date:</td>
                 <td colspan="3" class="form-td">
@@ -75,7 +79,7 @@
                         <td class='form-td'>{$product['productID']}</td>
                         <td class='form-td'>{$product['product_name']}</td>
                         <td class='form-td'>&#8369;".number_format($product['product_price'], 2)."</td>
-                        <td class='form-td'><input type='number' value='{$product['quantity']}' min='1' class='quantity-input'></td>
+                        <td class='form-td quantity-input'><input type='number' value='{$product['quantity']}' min='1' class='quantity-input'></td>
                         <td class='form-td'>&#8369;".number_format($product['total'], 2)."</td>
                         <td class='form-td'><button class='remove-button'>Remove</button></td>
                     </tr>";

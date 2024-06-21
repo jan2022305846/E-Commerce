@@ -51,6 +51,9 @@
     <div class="form-container">
         <div class="title">
             <h2>Transactions</h2>
+        <div class="buttons">
+            <a href="adminpanel.html"><input type="button" value="Go Back"></a>
+        </div>
         </div>
         <table class="form-table">
             <tr>
@@ -64,9 +67,6 @@
             </tr>
             <?php include 'fetch_transactions.php'; ?>
         </table>
-        <div class="buttons">
-            <a href="adminpanel.html"><input type="button" value="Go Back"></a>
-        </div>
     </div>
     <hr>
     <footer class="footer">

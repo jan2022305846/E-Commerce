@@ -30,6 +30,9 @@
     <div class="form-container">
         <div class="title">
             <h2>Product Sales</h2>
+        <div class="buttons">
+            <a href="adminpanel.html"><input type="button" value="Go Back"></a>
+        </div>
         </div>
         <form class="filter-form" method="POST" action="">
             <label for="date">Select Date Filter:</label>
@@ -64,9 +67,6 @@
             </tr>
             <?php include 'fetch_sales.php'; ?>
         </table>
-        <div class="buttons">
-            <a href="adminpanel.html"><input type="button" value="Go Back"></a>
-        </div>
     </div>
     <hr>
     <footer class="footer">

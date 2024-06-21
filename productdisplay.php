@@ -47,7 +47,15 @@ if(isset($_GET['product_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($product_name); ?></title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/stylepiro.css">
     <link rel="shortcut icon" href="Images/Icons/favicon.png" type="image/x-icon">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/pirobox.js"></script>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -72,7 +80,17 @@ if(isset($_GET['product_id'])) {
     <hr>
     <div class="product-container">
         <div class="left-section">
-            <img class="product-image" src="<?php echo htmlspecialchars($product_image); ?>" alt="<?php echo htmlspecialchars($product_name); ?>">
+        <div class="demo">
+            <a href="<?php echo htmlspecialchars($product_image); ?>" class="pirobox_gall" title="<?php echo htmlspecialchars($product_name); ?>">
+                <img class="product-image" src="<?php echo htmlspecialchars($product_image); ?>" alt="<?php echo htmlspecialchars($product_name); ?>">
+            </a>
+            <a href="Images/Bag/user brown.jpg" class="pirobox_gall" rel="gallery" title="<?php echo htmlspecialchars($product_name); ?>">
+                <img class="hidden" src="" alt="<?php echo htmlspecialchars($product_name); ?> - Image 1">
+            </a>
+            <a href="Images/Bag/brown_leather.jpg" class="pirobox_gall" rel="gallery" title="<?php echo htmlspecialchars($product_name); ?>">
+                <img class="hidden" src="" alt="<?php echo htmlspecialchars($product_name); ?> - Image 2">
+            </a>
+        </div>
         </div>
         <div class="right-section">
             <div class="top-section">
@@ -101,7 +119,7 @@ if(isset($_GET['product_id'])) {
                     <input type="hidden" name="product_quantity" value="<?php echo htmlspecialchars($product_quantity); ?>">
                     <input type="hidden" name="product_price" value="<?php echo htmlspecialchars($product_price); ?>">
                     <input type="hidden" name="existing_products" value="<?php echo htmlspecialchars($_POST['existing_products'] ?? ''); ?>"> <!-- Pass existing products -->
-                    Quantity: <input type="number" name="quantity" min="1" max="<?php echo htmlspecialchars($product_quantity); ?>" value="1">
+                    Quantity: <input class="form-td" type="number" name="quantity" min="1" max="<?php echo htmlspecialchars($product_quantity); ?>" value="1">
                     <button type="submit">Buy Now</button>
                 </form>
                 <form action="products.php">
@@ -114,6 +132,18 @@ if(isset($_GET['product_id'])) {
     <footer class="footer">
         <p>&copy; 2004 Janny Abu-abu. All Rights Reserved</p>
     </footer>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $().piroBox({
+                my_speed: 400, //animation speed
+                bg_alpha: 0.1, //background opacity
+                slideShow : true, // true == slideshow on, false == slideshow off
+                slideSpeed : 4, //slideshow duration in seconds(3 to 6 Recommended)
+                close_all : '.piro_close,.piro_overlay'// add class .piro_overlay(with comma)if you want overlay click close piroBox
+
+        });
+    });
+    </script>
     <script src="js/low_stock_alert.js"></script>
 </body>
 </html>

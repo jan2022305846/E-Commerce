@@ -23,6 +23,12 @@ if ($result->num_rows > 0) {
         echo "<input type='submit' value='Add Stock'>";
         echo "</form>";
         echo "</td>";
+        echo "<td class='form-td'>";
+        echo "<form action='add_product.php' method='get'>";
+        echo "<input type='hidden' name='productID' value='".$row['productID']."'>";
+        echo "<input type='submit' value='Add New Product'>";
+        echo "</form>";
+        echo "</td>";
         echo "</tr>";
     }
 } else {
