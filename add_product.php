@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <tr>
                     <td class="prod-td">
                         <label for="product_image">Product Image:</label><br>
-                        <input type="file" id="product_image" name="product_image" placeholder="Add Image Here:" accept="image/*" style="width: 100%;"><br>
+                        <input type="file" id="product_image" name="product_image" placeholder="Add Image Here:" accept="image/*" style="width: 50%;"><br>
                     </td>
                 </tr>
                 <tr>
