@@ -144,6 +144,5 @@ if(isset($_GET['product_id'])) {
         });
     });
     </script>
-    <script src="js/low_stock_alert.js"></script>
 </body>
 </html>

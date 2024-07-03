@@ -1,7 +1,8 @@
 <?php
 include 'connection.php';
 
-$sql = "SELECT * FROM products";
+$sql = "SELECT * FROM products
+        ORDER BY productID DESC";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {

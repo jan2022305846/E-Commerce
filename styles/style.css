@@ -208,6 +208,10 @@ a:hover{
 	align-items: center;
 }
 
+.prod-td input[type="checkbox"]{
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .left-section{
 	background-color: #4C2E05;;
 	display: flex;

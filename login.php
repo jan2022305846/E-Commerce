@@ -88,6 +88,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
       </div>
     </div>
-    <script src="js/low_stock_alert.js"></script>
   </body>
 </html>

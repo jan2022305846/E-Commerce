@@ -273,6 +273,5 @@
             window.location.href = "products.php";
         }
     </script>
-    <script src="js/low_stock_alert.js"></script>
 </body>
 </html>

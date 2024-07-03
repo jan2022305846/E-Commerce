@@ -96,7 +96,7 @@
         $encoded_products = urlencode(json_encode($products));
         ?>
         <div class="buttons">
-            <a href="billing.php?transaction_number=<?php echo uniqid(); ?>&total_purchase=<?php echo number_format($total_amount, 2); ?>&products=<?php echo $encoded_products; ?>" class="proceed-link"><input type="button" value="Proceed"></a>
+            <a href="billing.php?transaction_number=<?php echo $transactionNumber; ?>&total_purchase=<?php echo number_format($total_amount, 2); ?>&products=<?php echo $encoded_products; ?>" class="proceed-link"><input type="button" value="Proceed"></a>
             <a href="products.php"><input type="button" value="Select Product"></a>
         </div>
     </div>
@@ -104,7 +104,6 @@
     <footer class="footer">
         <p>&copy; 2004 Janny Abu-abu. All Rights Reserved</p>
     </footer>
-    <script src="js/low_stock_alert.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const quantityInputs = document.querySelectorAll('.quantity-input');
